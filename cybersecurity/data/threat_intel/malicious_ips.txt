@@ -1,0 +1,49 @@
+SOURCE: cybersecurity Threat Intelligence — Known Malicious IPs
+
+185.220.101.45
+Category: Tor Exit Node
+Country: Romania
+Threat Level: HIGH
+Description: Known Tor exit node. Frequently used to anonymize credential stuffing attacks, brute-force logins, and SSH scanning campaigns. Do not trust logins from this IP without additional verification factors.
+Associated MITRE: T1090 (Proxy), T1078 (Valid Accounts), T1110 (Brute Force)
+
+185.220.101.0/24
+Category: Tor Exit Node Range
+Country: Germany / Romania
+Threat Level: HIGH
+Description: Full Tor exit node CIDR block. Entire /24 range is used for anonymization of malicious traffic. Block or require step-up MFA for all logins from this range.
+Associated MITRE: T1090
+
+203.0.113.45
+Category: APT C2 Server
+Country: China (AS45899)
+Threat Level: CRITICAL
+Description: Known command-and-control server associated with APT41 (Double Dragon) campaigns. Observed in espionage operations against healthcare, telecom, and financial sectors. Any outbound communication to this IP should be treated as a confirmed compromise indicator.
+Associated MITRE: T1071 (Application Layer Protocol), T1041 (Exfiltration Over C2)
+CVE: CVE-2019-3396, CVE-2021-26855
+
+198.51.100.22
+Category: Scanning Infrastructure
+Country: Netherlands
+Threat Level: MEDIUM
+Description: Associated with automated port scanning and vulnerability assessment infrastructure. Not confirmed malicious but commonly seen in reconnaissance phases preceding attacks.
+Associated MITRE: T1595 (Active Scanning)
+
+192.168.0.0/16
+Category: Internal RFC1918
+Country: N/A
+Threat Level: LOW (context-dependent)
+Description: Private IP address space. Traffic from these addresses should be analyzed in the context of lateral movement — internal hosts should not be communicating with known C2 endpoints or performing port scans of other internal systems.
+Associated MITRE: T1021 (Remote Services), T1570 (Lateral Tool Transfer)
+
+10.0.0.0/8
+Category: Internal RFC1918
+Country: N/A
+Threat Level: LOW (context-dependent)
+Description: Internal corporate address space. Monitor for unusual outbound data volume (potential exfiltration) and cross-segment scanning activity.
+
+BLOCKLIST CATEGORIES:
+- TOR_EXIT: Anonymization, impossible travel scenarios, credential stuffing
+- APT_C2: Confirmed nation-state C2 infrastructure — immediate escalation required
+- SCANNER: Reconnaissance activity — investigate for targeted attacks
+- HOSTING_ABUSE: Bulletproof hosting used by cybercriminals

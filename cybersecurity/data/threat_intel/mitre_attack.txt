@@ -1,0 +1,39 @@
+SOURCE: MITRE ATT&CK Framework
+
+T1078 - Valid Accounts
+Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Compromised credentials may be used to bypass access controls placed on various resources on systems within the network. This technique is commonly seen in credential stuffing attacks where attackers use large sets of stolen username/password pairs.
+
+T1090 - Proxy (Tor)
+Adversaries may use a connection proxy to direct network traffic between systems or act as an intermediary for network communications. Tor (The Onion Router) is a common anonymization network used to disguise the origin of attacks. IP ranges 185.220.101.0/24 are known Tor exit nodes frequently used in credential-stuffing and brute-force attacks.
+
+T1110 - Brute Force
+Adversaries may use brute force techniques to gain access to accounts when passwords are unknown or when password hashes are obtained. Multiple failed login attempts (>3) within a short window indicate brute force activity. Account lockout policies and MFA can mitigate this technique.
+
+T1003 - OS Credential Dumping (Mimikatz)
+Adversaries may attempt to dump credentials to obtain account login information. Mimikatz (hash: d41d8cd98f00b204e9800998ecf8427e) is a credential-dumping tool used heavily in APT campaigns and ransomware pre-staging operations. Detection: monitor for LSASS memory access, Sysmon Event ID 10.
+
+T1486 - Data Encrypted for Impact (Ransomware)
+Adversaries may encrypt data on target systems or on large numbers of systems in a network to interrupt availability. WannaCry (hash: 5f4dcc3b5aa765d61d8327deb882cf99) exploits EternalBlue (CVE-2017-0144) and is self-propagating. Ensure SMB v1 is disabled and MS17-010 patch is applied.
+
+T1071 - Application Layer Protocol (C2)
+Adversaries may communicate using application layer protocols to avoid detection. Cobalt Strike Beacon (hash: abc123def456789012345678901234ab) uses HTTP/HTTPS for C2 communication. Known Cobalt Strike team servers include IPs in 203.0.113.0/24.
+
+T1041 - Exfiltration Over C2 Channel
+Adversaries may steal data by exfiltrating it over an existing command and control channel. Large outbound transfers (>1GB) to external IPs during off-hours are strong indicators of exfiltration. Monitor for unusual data volume on egress firewall rules.
+
+T1021 - Remote Services (Lateral Movement)
+Adversaries may use Valid Accounts to log into a service specifically designed to accept remote connections, such as SMB, RDP, or WinRM. SMB scanning (port 445) from a workstation to multiple internal hosts indicates lateral movement. Segment internal networks and restrict inter-workstation SMB traffic.
+
+T1548 - Abuse Elevation Control Mechanism (Privilege Escalation)
+Adversaries may circumvent mechanisms designed to control elevate privileges. Adding service accounts to privileged groups (Domain Admins) is a common persistence and privilege escalation technique. Monitor Active Directory group membership changes.
+
+T1566 - Phishing
+Adversaries may send phishing messages to gain access to victim systems. Spearphishing with malicious attachments is the most common initial access vector. Implement email filtering, sandboxing, and user training.
+
+T1176 - Browser Extensions (Adware)
+Adversaries may abuse internet browser extensions to establish persistent access to victim systems. Adware may harvest user data or redirect web traffic. Generally lower severity but can be a vector for more serious compromise.
+
+KNOWN MALICIOUS IP RANGES:
+- 185.220.101.0/24: Tor exit node range — Romania/Germany — associated with credential stuffing
+- 203.0.113.0/24: APT41 C2 infrastructure — associated with espionage and financial crime
+- 198.51.100.0/24: Scanning/reconnaissance activity from threat actor infrastructure

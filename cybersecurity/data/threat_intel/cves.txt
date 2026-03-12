@@ -1,0 +1,51 @@
+SOURCE: cybersecurity CVE Intelligence Feed
+
+CVE-2017-0144 (EternalBlue / MS17-010)
+CVSS: 9.3 (Critical)
+Affected: Windows SMB v1 (Windows XP, 7, Server 2003/2008/2012/2016)
+Description: A remote code execution vulnerability in the SMBv1 server allows unauthenticated attackers to execute arbitrary code via crafted packets. Exploited by WannaCry, NotPetya, and numerous APT groups. This vulnerability has been weaponized at scale.
+Mitigation: Disable SMBv1, apply MS17-010 patch, block TCP 445 externally.
+Associated Malware: WannaCry (hash: 5f4dcc3b5aa765d61d8327deb882cf99), NotPetya
+MITRE: T1210 (Exploitation of Remote Services)
+
+CVE-2021-26855 (ProxyLogon — Microsoft Exchange)
+CVSS: 9.8 (Critical)
+Affected: Microsoft Exchange Server 2013/2016/2019
+Description: Server-side request forgery (SSRF) vulnerability allowing unauthenticated attackers to authenticate as Exchange Server. Chained with CVE-2021-27065 to achieve RCE and deploy webshells. Exploited by HAFNIUM (Chinese APT) and subsequently by ransomware operators.
+Mitigation: Apply cumulative Exchange updates. Check for webshells in owa/auth directories.
+Associated IPs: 203.0.113.45 (APT41/HAFNIUM infrastructure)
+MITRE: T1190 (Exploit Public-Facing Application), T1505.003 (Web Shell)
+
+CVE-2019-3396 (Confluence OGNL Injection)
+CVSS: 9.8 (Critical)
+Affected: Atlassian Confluence < 6.6.12, < 6.12.3, < 6.13.3, < 6.14.2
+Description: Widget Connector macro in Atlassian Confluence allows OGNL template injection, enabling remote code execution. Exploited by multiple threat actors including APT41 for initial access in enterprise environments.
+Mitigation: Upgrade Confluence to patched version. Apply network segmentation.
+MITRE: T1190, T1059 (Command and Scripting Interpreter)
+
+CVE-2022-30190 (Follina — MSDT RCE)
+CVSS: 7.8 (High)
+Affected: Windows (MSDT — Microsoft Support Diagnostic Tool)
+Description: Remote code execution vulnerability via malicious Office documents that invoke MSDT without user enabling macros. Exploited in the wild as a zero-day before patch availability.
+Mitigation: Disable MSDT protocol handler via registry, apply June 2022 patches.
+MITRE: T1566.001 (Spearphishing Attachment), T1203 (Exploitation for Client Execution)
+
+CVE-2021-44228 (Log4Shell — Apache Log4j)
+CVSS: 10.0 (Critical)
+Affected: Apache Log4j 2.x < 2.15.0
+Description: JNDI injection vulnerability in Log4j 2 allows unauthenticated remote code execution by logging attacker-controlled strings. Affected virtually every Java application. Mass exploitation observed within hours of disclosure.
+Mitigation: Upgrade to Log4j 2.17.1+, set log4j2.formatMsgNoLookups=true.
+MITRE: T1190, T1027 (Obfuscated Files or Information)
+
+CVE-2023-23397 (Microsoft Outlook Privilege Escalation)
+CVSS: 9.8 (Critical)
+Affected: Microsoft Outlook for Windows
+Description: Zero-click vulnerability allowing NTLM hash theft via crafted calendar invite. No user interaction required — triggered when Outlook retrieves the reminder. Exploited by APT28 (Fancy Bear) in targeted attacks.
+Mitigation: Apply March 2023 Outlook patches. Block outbound SMB (TCP 445) at perimeter.
+MITRE: T1187 (Forced Authentication), T1078
+
+PATCH PRIORITY GUIDE:
+- CVSS 9.0+: Patch within 24-48 hours (Critical)
+- CVSS 7.0-8.9: Patch within 7 days (High)
+- CVSS 4.0-6.9: Patch within 30 days (Medium)
+- CVSS < 4.0: Schedule in next maintenance window (Low)

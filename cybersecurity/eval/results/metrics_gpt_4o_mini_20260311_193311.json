@@ -1,0 +1,39 @@
+{
+  "summary": {
+    "total_alerts": 15,
+    "groundedness_score": 1.0,
+    "safety_pass_rate": 1.0,
+    "accuracy": 0.4667
+  },
+  "classification": {
+    "accuracy": 0.4667,
+    "precision": 0.7533,
+    "recall": 0.4667,
+    "f1": 0.5011,
+    "total": 15
+  },
+  "latency": {
+    "mean_ms": 8589,
+    "median_ms": 8243,
+    "p95_ms": 25005,
+    "p99_ms": 25005,
+    "min_ms": 4232,
+    "max_ms": 25005
+  },
+  "cost": {
+    "avg_cost_usd": 0.000967,
+    "cost_per_alert_usd": 0.000967,
+    "avg_tokens_per_alert": 3394,
+    "projected_daily_10k_usd": 9.67,
+    "projected_monthly_usd": 290.2,
+    "total_cost_usd": 0.0145
+  },
+  "safety": {
+    "guardrail_triggers": 0,
+    "safety_pass_rate": 1.0,
+    "human_review_routed": 0
+  },
+  "model": "gpt-4o-mini",
+  "evaluated_at": "2026-03-11T19:33:11.041829Z",
+  "alert_count": 15
+}

@@ -1,0 +1,5 @@
+on)
+Adversaries may circumvent mechanisms designed to control elevate privileges. Adding service accounts to privileged groups (Domain Admins) is a common persistence and privilege escalation technique. Monitor Active Directory group membership changes.
+
+T1566 - Phishing
+Adversaries may send phishing messages to gain access to victim systems. Spearphishing with malicious attachments is the most co
